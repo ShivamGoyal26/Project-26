@@ -1,9 +1,5 @@
 const App = () => {
-  return (
-    <div>
-      <h1>My Table</h1>
-    </div>
-  );
+  return <div className="font-normal">Project 26</div>;
 };
 
 export default App;
