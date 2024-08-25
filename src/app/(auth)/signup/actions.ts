@@ -2,10 +2,12 @@
 
 import { hash } from "@node-rs/argon2";
 import { signUpSchema, SignUpValues } from "@/lib/validation";
-import { generateIdFromEntropySize } from "lucia";
 import prisma from "@/lib/prisma";
 import { lucia } from "@/auth";
 import { cookies } from "next/headers";
+
+// Files
+import { generateIdFromEntropySize } from "lucia";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect";
 
