@@ -36,10 +36,11 @@ const SignUpForm = () => {
   async function onSubmit(values: SignUpValues) {
     setError(undefined);
     form.clearErrors();
-    // startTransition(async () => {
-    //   const { error } = await signUp(values);
-    //   if (error) setError(error);
-    // });
+
+    startTransition(async () => {
+      const { error } = await signUp(values);
+      if (error) setError(error);
+    });
   }
 
   return (

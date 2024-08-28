@@ -18,6 +18,7 @@ import { useState, useTransition } from "react";
 
 import { PasswordInput } from "@/components/password-input";
 import LoadingButton from "@/components/LoadingButton";
+import { login } from "../actions";
 
 const LoginForm = () => {
   const [error, setError] = useState<string>();
@@ -36,10 +37,11 @@ const LoginForm = () => {
   async function onSubmit(values: SignUpValues) {
     setError(undefined);
     form.clearErrors();
-    // startTransition(async () => {
-    //   const { error } = await signUp(values);
-    //   if (error) setError(error);
-    // });
+
+    startTransition(async () => {
+      const { error } = await login(values);
+      if (error) setError(error);
+    });
   }
 
   return (

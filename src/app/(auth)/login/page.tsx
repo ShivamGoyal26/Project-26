@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import signUpImage from "@/assets/signup-image.jpg";
+
+// Files
 import Image from "next/image";
 import Link from "next/link";
-import SignUpForm from "./components/login-form";
 import LoginForm from "./components/login-form";
 
 export const metadata: Metadata = {
@@ -15,15 +16,14 @@ export default function Login() {
       <div className="flex h-full max-h-[40rem] w-full max-w-[64rem] overflow-hidden rounded-2xl bg-card shadow-2xl">
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <div className="space-y-2 text-center">
-            <h1 className="text-3xl font-semibold">Sign up to bugbook</h1>
-            <p className="text-muted-foreground">
-              A place where <span className="italic">you</span> can find a
-              friend.
-            </p>
+            <h1 className="text-3xl font-semibold">Login to bugbook</h1>
           </div>
           <div className="space-y-5">
             <LoginForm />
-            <Link href={"/login"} className="block text-center hover:underline">
+            <Link
+              href={"/signup"}
+              className="block text-center hover:underline"
+            >
               Don&apos;t have an account? Sign up
             </Link>
           </div>

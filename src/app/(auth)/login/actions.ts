@@ -1,6 +1,6 @@
 "use server";
 
-import { verify } from "@node-rs/argon2";
+import { compare } from "bcryptjs";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { isRedirectError } from "next/dist/client/components/redirect";
@@ -39,18 +39,14 @@ export async function login(
       };
     }
 
-    const validPassword = verify(existingUser.passwordHash, password, {
-      memoryCost: 19456,
-      timeCost: 2,
-      outputLen: 32,
-      parallelism: 1,
-    });
+    const validPassword = await compare(password, existingUser.passwordHash);
 
     if (!validPassword) {
       return {
         error: "Incorrect username or password",
       };
     }
+
     const session = await lucia.createSession(existingUser.id, {});
     const sessionCookie = await lucia.createSessionCookie(session.id);
     cookies().set(
@@ -61,7 +57,7 @@ export async function login(
 
     return redirect("/");
   } catch (error) {
-    if (isRedirectError(error)) throw error; // this error will be catched by same catch block means this block only
+    if (isRedirectError(error)) throw error;
     console.log(error);
     return {
       error: "something went wrong, please try again",

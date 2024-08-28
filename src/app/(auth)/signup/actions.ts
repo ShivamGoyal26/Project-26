@@ -1,6 +1,6 @@
 "use server";
 
-import { hash } from "@node-rs/argon2";
+import { hash } from "bcryptjs";
 import { signUpSchema, SignUpValues } from "@/lib/validation";
 import prisma from "@/lib/prisma";
 import { lucia } from "@/auth";
@@ -25,12 +25,8 @@ export async function signUp(
 
     const { username, email, password } = parseResult.data;
 
-    const hashedPassword = await hash(password, {
-      memoryCost: 19456,
-      timeCost: 2,
-      outputLen: 32,
-      parallelism: 1,
-    });
+    const hashedPassword = await hash(password, 10); // 10 is the salt rounds
+
     const userId = generateIdFromEntropySize(10);
 
     const existingUsername = await prisma.user.findFirst({
@@ -83,7 +79,7 @@ export async function signUp(
 
     return redirect("/");
   } catch (error) {
-    if (isRedirectError(error)) throw error; // this error will be catched by same catch block means this block only
+    if (isRedirectError(error)) throw error;
     console.log(error);
     return {
       error: "something went wrong, please try again",
