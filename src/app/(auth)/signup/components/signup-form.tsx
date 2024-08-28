@@ -45,7 +45,6 @@ const SignUpForm = () => {
 
   return (
     <Form {...form}>
-      {isPending && <div>loading</div>}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {error && <p className="text-center text-destructive">{error}</p>}
         <FormField

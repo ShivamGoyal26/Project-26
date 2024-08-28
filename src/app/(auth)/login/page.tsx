@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import signUpImage from "@/assets/signup-image.jpg";
+import loginImage from "@/assets/login-image.jpg";
 
 // Files
 import Image from "next/image";
@@ -7,7 +7,7 @@ import Link from "next/link";
 import LoginForm from "./components/login-form";
 
 export const metadata: Metadata = {
-  title: "Sign Up",
+  title: "Login",
 };
 
 export default function Login() {
@@ -29,7 +29,7 @@ export default function Login() {
           </div>
         </div>
         <Image
-          src={signUpImage}
+          src={loginImage}
           alt="Image"
           className="hidden w-1/2 object-cover md:block"
         />

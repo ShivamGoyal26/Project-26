@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useTransition } from "react";
 
 // Files
 import {
@@ -12,10 +13,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { signUpSchema, SignUpValues } from "@/lib/validation";
+import { loginSchema, LoginValues, signUpSchema } from "@/lib/validation";
 import { Input } from "@/components/ui/input";
-import { useState, useTransition } from "react";
-
 import { PasswordInput } from "@/components/password-input";
 import LoadingButton from "@/components/LoadingButton";
 import { login } from "../actions";
@@ -24,17 +23,16 @@ const LoginForm = () => {
   const [error, setError] = useState<string>();
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<SignUpValues>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm<LoginValues>({
+    resolver: zodResolver(loginSchema),
     mode: "onChange",
     defaultValues: {
-      email: "",
-      password: "",
       username: "",
+      password: "",
     },
   });
 
-  async function onSubmit(values: SignUpValues) {
+  async function onSubmit(values: LoginValues) {
     setError(undefined);
     form.clearErrors();
 
@@ -46,7 +44,6 @@ const LoginForm = () => {
 
   return (
     <Form {...form}>
-      {isPending && <div>loading</div>}
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {error && <p className="text-center text-destructive">{error}</p>}
         <FormField
