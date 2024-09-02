@@ -26,6 +26,7 @@ const LoginForm = () => {
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     mode: "onChange",
+
     defaultValues: {
       username: "",
       password: "",
@@ -41,6 +42,10 @@ const LoginForm = () => {
       if (error) setError(error);
     });
   }
+
+  const {
+    formState: { isValid },
+  } = form;
 
   return (
     <Form {...form}>
@@ -80,7 +85,12 @@ const LoginForm = () => {
             </FormItem>
           )}
         />
-        <LoadingButton loading={isPending} type="submit" className="w-full">
+        <LoadingButton
+          loading={isPending}
+          disabled={!isValid}
+          type="submit"
+          className="w-full"
+        >
           Login
         </LoadingButton>
       </form>

@@ -33,6 +33,10 @@ const SignUpForm = () => {
     },
   });
 
+  const {
+    formState: { isValid },
+  } = form;
+
   async function onSubmit(values: SignUpValues) {
     setError(undefined);
     form.clearErrors();
@@ -99,7 +103,12 @@ const SignUpForm = () => {
             </FormItem>
           )}
         />
-        <LoadingButton loading={isPending} type="submit" className="w-full">
+        <LoadingButton
+          disabled={!isValid}
+          loading={isPending}
+          type="submit"
+          className="w-full"
+        >
           Create account
         </LoadingButton>
       </form>
