@@ -7,8 +7,6 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  console.log("Auth Layout file runing");
-
   const { user } = await validateRequest();
 
   if (user) redirect("/");

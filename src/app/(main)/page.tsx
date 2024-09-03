@@ -1,6 +1,6 @@
 const App = () => {
   return (
-    <div>
+    <div className="">
       <div>project 26</div>
     </div>
   );
