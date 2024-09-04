@@ -1,9 +1,10 @@
 import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
-import React, { useContext } from "react";
+import React from "react";
+
 import SessionProvider from "./SessionProvider";
-import Navbar from "./Navbar";
 import MenuBar from "./menubar";
+import Navbar from "./navbar";
 
 export default async function Layout({
   children,
