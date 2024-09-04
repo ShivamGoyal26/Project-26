@@ -1,5 +1,6 @@
 import UserAvatar from "@/components/UserAvatar";
 import { PostData } from "@/lib/types";
+import { formatRelativeDate } from "@/lib/utils";
 import Link from "next/link";
 
 type PostProps = {
@@ -23,9 +24,13 @@ export default function Post({ post }: PostProps) {
           <Link
             href={`/posts/${post.id}`}
             className="block text-sm text-muted-foreground hover:underline"
-          ></Link>
+          >
+            {formatRelativeDate(post.createdAt)}
+          </Link>
         </div>
       </div>
+
+      <div className="whitespace-pre-line break-words">{post.content}</div>
     </article>
   );
 }
