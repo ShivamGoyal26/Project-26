@@ -30,7 +30,9 @@ export default function Post({ post }: PostProps) {
         </div>
       </div>
 
-      <div className="whitespace-pre-line break-words">{post.content}</div>
+      <div className="whitespace-pre-line break-words text-sm">
+        {post.content}
+      </div>
     </article>
   );
 }
