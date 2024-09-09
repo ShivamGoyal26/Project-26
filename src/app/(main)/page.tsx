@@ -1,4 +1,4 @@
-import Dashboard from "../containers/main/dashboard";
+import Dashboard from "@/containers/main/dashboard";
 
 const DashboardRoute = async () => {
   return <Dashboard />;
