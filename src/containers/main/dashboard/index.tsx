@@ -1,6 +1,6 @@
-import PostEditor from "@/app/containers/main/dashboard/components/editor/PostEditor";
 import TrendsSidebar from "@/components/TrendsSidebar";
 import ForYouFeed from "./components/for-your-feed";
+import PostEditor from "./components/editor/PostEditor";
 
 const Dashboard = async () => {
   return (
