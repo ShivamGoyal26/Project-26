@@ -7,6 +7,7 @@ import UserAvatar from "./UserAvatar";
 import { unstable_cache } from "next/cache";
 import { formatNumber } from "@/lib/utils";
 import { getUserDataSelect } from "@/lib/types";
+import FollowButton from "./FollowButton";
 
 export default function TrendsSidebar() {
   return (
@@ -28,6 +29,11 @@ async function WhoToFollow() {
     where: {
       NOT: {
         id: user.id,
+      },
+      followers: {
+        none: {
+          followerId: user.id,
+        },
       },
     },
     select: getUserDataSelect(user.id),
@@ -55,7 +61,7 @@ async function WhoToFollow() {
             </div>
           </Link>
           {/* </UserTooltip> */}
-          {/* <FollowButton
+          <FollowButton
             userId={user.id}
             initialState={{
               followers: user._count.followers,
@@ -63,7 +69,7 @@ async function WhoToFollow() {
                 ({ followerId }) => followerId === user.id,
               ),
             }}
-          /> */}
+          />
         </div>
       ))}
     </div>

@@ -1,5 +1,6 @@
+import Login from "@/containers/auth/login";
 import { Metadata } from "next";
-import Login from "@/app/containers/auth/login";
+
 
 export const metadata: Metadata = {
   title: "Login",
