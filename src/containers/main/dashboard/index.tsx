@@ -3,6 +3,7 @@ import ForYouFeed from "./components/for-your-feed";
 import PostEditor from "./components/editor/PostEditor";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FollowingFeed from "./components/following-feed";
+import { notFound } from "next/navigation";
 
 const Dashboard = async () => {
   return (
