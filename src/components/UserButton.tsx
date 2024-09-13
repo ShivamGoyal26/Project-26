@@ -74,8 +74,12 @@ const UserButton = ({ className }: UserButtonProps) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
-            // Clear all React Query caches
+            // Cancel all ongoing queries
+            queryClient.cancelQueries();
+
+            // Optionally, clear the cache if you want to remove stored data
             queryClient.clear();
+
             logout();
           }}
         >
