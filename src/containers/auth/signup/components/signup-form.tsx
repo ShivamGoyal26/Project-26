@@ -25,7 +25,7 @@ const SignUpForm = () => {
 
   const form = useForm<SignUpValues>({
     resolver: zodResolver(signUpSchema),
-    mode: "onChange",
+    mode: "all",
     defaultValues: {
       email: "",
       password: "",
