@@ -30,6 +30,14 @@ const UserButton = ({ className }: UserButtonProps) => {
   const queryClient = useQueryClient();
   const { theme, setTheme } = useTheme();
 
+  const clearData = () => {
+    // Cancel all ongoing queries
+    queryClient.cancelQueries();
+
+    // Optionally, clear the cache if you want to remove stored data
+    queryClient.clear();
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -73,14 +81,9 @@ const UserButton = ({ className }: UserButtonProps) => {
         </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem
-          onClick={() => {
-            // Cancel all ongoing queries
-            queryClient.cancelQueries();
-
-            // Optionally, clear the cache if you want to remove stored data
-            queryClient.clear();
-
-            logout();
+          onClick={async () => {
+            await logout();
+            clearData();
           }}
         >
           <LogOutIcon className="mr-2 size-4" />

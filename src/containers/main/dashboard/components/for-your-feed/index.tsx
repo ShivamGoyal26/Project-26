@@ -16,6 +16,7 @@ export default function ForYouFeed() {
     isFetching,
     isFetchingNextPage,
     status,
+    error,
   } = useInfiniteQuery({
     queryKey: ["post-feed", "for-you"],
     queryFn: ({ pageParam }) =>
@@ -47,6 +48,7 @@ export default function ForYouFeed() {
     return (
       <p className="text-center text-destructive">
         An error occurred while loading posts.
+        {JSON.stringify(error)}
       </p>
     );
   }
